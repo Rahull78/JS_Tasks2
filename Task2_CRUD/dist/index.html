@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Form</title>
+  </head>
+  <body>
+    <div
+      class="min-h-screen py-40"
+      style="background-image: linear-gradient(115deg, #9f7aea, #fee2fe)"
+    >
+      <div class="container mx-auto">
+        <div
+          class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden"
+        >
+          <div
+            class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center"
+            style="background-image: url(../res/background_image_3.jpg)"
+          >
+            <h1 class="text-3xl text-white mb-3">Welcome</h1>
+            <p class="text-white">
+              Here is a form which can take your some information to store the
+              data about user. <br />
+              right now we've only few fields requires for the data storing
+              process and sorting so fill the fields which is given here.
+            </p>
+          </div>
+
+          <div class="w-full lg:w-1/2 py-16 px-12">
+            <h2 class="text-3xl mb-4">Register</h2>
+            <p class="my-2">Enter Valid Details Properly!!!</p>
+            <form action="userData.html" id="formValues">
+              <div class="grid grid-cols-2 gap-5">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  id="FirstName"
+                  class="border border-gray-400 py-1 px-2"
+                />
+                <span class="text-red-600" id="nameError"></span>
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  id="LastName"
+                  class="border border-gray-400 py-1 px-2"
+                />
+                <span class="text-red-600" id="lastNameError"></span>
+              </div>
+              <div class="mt-5">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  id="Email"
+                  class="border border-gray-400 py-1 px-2"
+                />
+                <span class="text-red-600" id="emailError"></span>
+              </div>
+              <div class="mt-5">
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  id="phoneNumber"
+                  class="border border-gray-400 py-1 px-2"
+                />
+                <span class="text-red-600" id="phoneError"></span>
+              </div>
+              <div class="mt-5">
+                <select
+                  name="gender"
+                  id="gender"
+                  class="border border-gray-400 py-1 px-2"
+                >
+                  <option value="selectGender">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+                <span class="text-red-600" id="genderError"></span>
+              </div>
+              <div class="mt-5">
+                <select id="city" class="border border-gray-400 py-1 px-2">
+                  <option value="selectCity">Select City</option>
+                  <option value="Ahmedabad">Ahmedabad</option>
+                  <option value="Surat">Surat</option>
+                  <option value="Vadodara">Vadodara</option>
+                  <option value="Rajkot">Rajkot</option>
+                </select>
+                <span class="text-red-600" id="cityError"></span>
+              </div>
+              <div class="mt-5">
+                <button
+                  class="w-full bg-purple-500 text-center hover:bg-white hover:text-purple-500 border border-purple-500 rounded-lg duration-500 text-white py-3"
+                  id="submitBtn"
+                >
+                  <a
+                    href="../dist/userData.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Submit</a
+                  >
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+  </body>
+</html>
