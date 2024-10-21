@@ -31,7 +31,7 @@
           <div class="w-full lg:w-1/2 py-16 px-12">
             <h2 class="text-3xl mb-4">Register</h2>
             <p class="my-2">Enter Valid Details Properly!!!</p>
-            <form action="data.html" id="formValues">
+            <form action="userData.html" id="formValues">
               <div class="grid grid-cols-2 gap-5">
                 <input
                   type="text"
@@ -67,15 +67,20 @@
                 <span class="text-red-600" id="phoneError"></span>
               </div>
               <div class="mt-5">
-                <input type="radio" name="gender" value="Male" id="male" />
-                Male
-                <input type="radio" name="gender" value="Female" id="female" />
-                Female
+                <select
+                  name="gender"
+                  id="gender"
+                  class="border border-gray-400 py-1 px-2"
+                >
+                  <option value="selectGender">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
                 <span class="text-red-600" id="genderError"></span>
               </div>
               <div class="mt-5">
                 <select id="city" class="border border-gray-400 py-1 px-2">
-                  <option value="">Select City</option>
+                  <option value="selectCity">Select City</option>
                   <option value="Ahmedabad">Ahmedabad</option>
                   <option value="Surat">Surat</option>
                   <option value="Vadodara">Vadodara</option>
@@ -88,7 +93,13 @@
                   class="w-full bg-purple-500 text-center hover:bg-white hover:text-purple-500 border border-purple-500 rounded-lg duration-500 text-white py-3"
                   id="submitBtn"
                 >
-                  Submit
+                  <a
+                    href="../dist/userData.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Submit</a
+                  >
                 </button>
               </div>
             </form>

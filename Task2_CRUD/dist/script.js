@@ -3,8 +3,7 @@ const firstName = document.getElementById("FirstName");
 const lastName = document.getElementById("LastName");
 const email = document.getElementById("Email");
 const phone = document.getElementById("phoneNumber");
-const genderMale = document.getElementById("male");
-const genderFemale = document.getElementById("female");
+const gender = document.getElementById("gender");
 const city = document.getElementById("city");
 
 const nameError = document.getElementById("nameError");
@@ -12,6 +11,9 @@ const lastNameError = document.getElementById("lastNameError");
 const Emailerror = document.getElementById("emailError");
 const phoneerror = document.getElementById("phoneError");
 const gendererror = document.getElementById("genderError");
+const cityError = document.getElementById("cityError");
+
+// User Data Array for storing User INformation
 
 // Validation for Names
 function validateName(name) {
@@ -36,6 +38,7 @@ function validateForm() {
   Emailerror.innerHTML = "";
   phoneerror.innerHTML = "";
   gendererror.innerHTML = "";
+  cityError.innerHTML = "";
 
   if (firstName.value.trim() === "") {
     nameError.innerHTML = "First name is required";
@@ -45,16 +48,12 @@ function validateForm() {
     isValid = false;
   }
 
-  if (lastName.value === "") {
+  if (lastName.value.trim() === "") {
     lastNameError.innerHTML = "Last name is required";
-    isValid = false;
-  } else if (!validateName(lastName.value)) {
-    lastNameError.innerHTML =
-      "Last name can only contain alphabets not numbers";
     isValid = false;
   }
 
-  if (email.value === "") {
+  if (email.value.trim() === "") {
     Emailerror.innerHTML = "Email is required";
     isValid = false;
   } else if (!validateEmail(email.value)) {
@@ -62,7 +61,7 @@ function validateForm() {
     isValid = false;
   }
 
-  if (phone.value === "") {
+  if (phone.value.trim() === "") {
     phoneerror.innerHTML = "Phone number is required";
     isValid = false;
   } else if (!validatePhoneNumber(phone.value)) {
@@ -70,8 +69,13 @@ function validateForm() {
     isValid = false;
   }
 
-  if (!genderMale.checked && !genderFemale.checked) {
+  if (gender.value === "") {
     gendererror.innerHTML = "Gender is required";
+    isValid = false;
+  }
+
+  if (city.value === "") {
+    cityError.innerHTML = "Please select your city";
     isValid = false;
   }
 
@@ -81,14 +85,17 @@ function validateForm() {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  if (validateForm()) {
-    const gender = genderMale.checked ? "Male" : "Female";
-    const log = `${firstName.value} 
+  const userData = `${firstName.value} 
     ${lastName.value} 
     ${email.value} 
     ${phone.value} 
-    ${gender}`;
-    console.log(log);
-    console.log("Form submitted successfully");
-  }
+    ${gender.value},
+    ${city.value}`;
+  console.log(userData);
+  console.log("Form submitted successfully");
+  //   userInfo.push(userPersonalInfo); //add the userData values into the userInfo Array
+  console.log(userInfo); //log the userInfo array
+
+  form.reset();
+  displayData();
 });
