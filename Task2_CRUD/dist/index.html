@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Form</title>
+    <title>Form Test</title>
   </head>
   <body>
     <div
@@ -31,7 +31,7 @@
           <div class="w-full lg:w-1/2 py-16 px-12">
             <h2 class="text-3xl mb-4">Register</h2>
             <p class="my-2">Enter Valid Details Properly!!!</p>
-            <form action="userData.html" id="formValues">
+            <form id="formValues">
               <div class="grid grid-cols-2 gap-5">
                 <input
                   type="text"
@@ -66,13 +66,20 @@
                 />
                 <span class="text-red-600" id="phoneError"></span>
               </div>
+              <!-- <div class="mt-5">
+                <input type="radio" name="gender" value="Male" id="male" />
+                Male
+                <input type="radio" name="gender" value="Female" id="female" />
+                Female
+                <span class="text-red-600" id="genderError"></span>
+              </div> -->
               <div class="mt-5">
                 <select
                   name="gender"
                   id="gender"
                   class="border border-gray-400 py-1 px-2"
                 >
-                  <option value="selectGender">Select Gender</option>
+                  <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
@@ -80,7 +87,7 @@
               </div>
               <div class="mt-5">
                 <select id="city" class="border border-gray-400 py-1 px-2">
-                  <option value="selectCity">Select City</option>
+                  <option value="">Select City</option>
                   <option value="Ahmedabad">Ahmedabad</option>
                   <option value="Surat">Surat</option>
                   <option value="Vadodara">Vadodara</option>
@@ -94,8 +101,8 @@
                   id="submitBtn"
                 >
                   <a
-                    href="../dist/userData.html"
-                    target="_blank"
+                    href="#userTableBody"
+                    target="_self"
                     rel="noopener noreferrer"
                   >
                     Submit</a
@@ -103,6 +110,67 @@
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto my-8">
+      <div
+        class="flex flex-col w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden"
+      >
+        <div class="w-full py-8 px-12">
+          <h2 class="text-3xl mb-6 text-gray-800 font-semibold">User Data</h2>
+
+          <!-- Table for displaying user data -->
+          <div class="overflow-x-auto">
+            <table
+              id="data-table"
+              class="min-w-full bg-white table-auto border-collapse border border-gray-300"
+            >
+              <thead class="bg-gray-100">
+                <tr>
+                  <th
+                    class="px-6 py-3 border border-gray-300 text-left text-gray-600 font-medium"
+                  >
+                    First Name
+                  </th>
+                  <th
+                    class="px-6 py-3 border border-gray-300 text-left text-gray-600 font-medium"
+                  >
+                    Last Name
+                  </th>
+                  <th
+                    class="px-6 py-3 border border-gray-300 text-left text-gray-600 font-medium"
+                  >
+                    Email
+                  </th>
+                  <th
+                    class="px-6 py-3 border border-gray-300 text-left text-gray-600 font-medium"
+                  >
+                    Phone
+                  </th>
+                  <th
+                    class="px-6 py-3 border border-gray-300 text-left text-gray-600 font-medium"
+                  >
+                    Gender
+                  </th>
+                  <th
+                    class="px-6 py-3 border border-gray-300 text-left text-gray-600 font-medium"
+                  >
+                    City
+                  </th>
+                  <th
+                    class="px-6 py-3 border border-gray-300 text-center text-gray-600 font-medium"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody" class="text-gray-700">
+                <!-- Dynamic rows will be inserted here from JavaScript -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
