@@ -66,13 +66,6 @@
                 />
                 <span class="text-red-600" id="phoneError"></span>
               </div>
-              <!-- <div class="mt-5">
-                <input type="radio" name="gender" value="Male" id="male" />
-                Male
-                <input type="radio" name="gender" value="Female" id="female" />
-                Female
-                <span class="text-red-600" id="genderError"></span>
-              </div> -->
               <div class="mt-5">
                 <select
                   name="gender"
@@ -95,18 +88,30 @@
                 </select>
                 <span class="text-red-600" id="cityError"></span>
               </div>
-              <div class="mt-5">
+              <div class="mt-5 flex space-x-4 justify-start">
+                <!-- Submit Button -->
                 <button
-                  class="w-full bg-purple-500 text-center hover:bg-white hover:text-purple-500 border border-purple-500 rounded-lg duration-500 text-white py-3"
-                  id="submitBtn"
+                  type="submit"
+                  class="bg-purple-500 hover:bg-white hover:text-purple-500 border border-purple-500 rounded-lg duration-500 text-white font-semibold py-2 px-4"
+                  id="submit-btn"
                 >
-                  <a
-                    href="#userTableBody"
-                    target="_self"
-                    rel="noopener noreferrer"
-                  >
-                    Submit</a
-                  >
+                  Submit
+                </button>
+
+                <!-- Update Button (Hidden by default) -->
+                <button
+                  id="update-btn"
+                  class="bg-purple-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded hidden"
+                >
+                  Update
+                </button>
+
+                <!-- Cancel Button (Hidden by default) -->
+                <button
+                  id="cancel-btn"
+                  class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded hidden"
+                >
+                  Cancel
                 </button>
               </div>
             </form>
@@ -171,6 +176,32 @@
               </table>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div
+      id="deleteModal"
+      class="flex fixed inset-0 items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <div class="bg-white rounded-lg p-6 max-w-sm mx-auto">
+        <h2 class="text-lg font-bold mb-4">
+          ARE YOU SURE YOU WANT TO DELETE THIS RECORD?
+        </h2>
+        <div class="flex justify-between">
+          <button
+            id="confirmDelete"
+            class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+          >
+            YES
+          </button>
+          <button
+            id="cancelDelete"
+            class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+          >
+            NO
+          </button>
         </div>
       </div>
     </div>

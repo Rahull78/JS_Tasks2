@@ -19,6 +19,7 @@ const cityError = document.getElementById("cityError");
 
 let userData = [];
 let editIndex = null;
+let deleteIndex = null;
 
 // Validation Functions
 function validateName(name) {
@@ -94,6 +95,29 @@ function validateForm() {
   return isValid;
 }
 
+// Show Delete Confirmation Modal
+function showDeleteModal(index) {
+  deleteIndex = index; // Store the index to delete
+  document.getElementById("deleteModal").classList.remove("hidden");
+}
+
+// Hide Delete Confirmation Modal
+function hideDeleteModal() {
+  document.getElementById("deleteModal").classList.add("hidden");
+}
+
+// Confirm Delete Action
+document.getElementById("confirmDelete").addEventListener("click", function () {
+  deleteRow(deleteIndex); // Call deleteRow with the stored index
+  hideDeleteModal(); // Hide modal after deletion
+});
+
+// Cancel Delete Action
+document
+  .getElementById("cancelDelete")
+  .addEventListener("click", hideDeleteModal);
+
+// Form Submission
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -115,6 +139,7 @@ form.addEventListener("submit", function (e) {
     } else {
       userData[editIndex] = userInfo;
       editIndex = null;
+      toggleEditMode(false);
     }
     form.reset();
     updateTable();
@@ -137,7 +162,7 @@ function updateTable() {
     deleteButton.className =
       "bg-red-500 hover:bg-red-600 text-red font-semibold text-xs rounded";
     deleteButton.innerText = "Delete";
-    deleteButton.onclick = () => deleteRow(index);
+    deleteButton.onclick = () => showDeleteModal(index);
     actionsCell.appendChild(deleteButton);
 
     const editButton = document.createElement("button");
@@ -163,4 +188,29 @@ function editRow(index) {
   gender.value = data.gender;
   city.value = data.city;
   editIndex = index;
+
+  toggleEditMode(true);
 }
+
+function toggleEditMode(isEditing) {
+  if (isEditing) {
+    // Hide submit button and show update/cancel buttons
+    document.getElementById("submit-btn").style.display = "none";
+    document.getElementById("update-btn").style.display = "inline";
+    document.getElementById("cancel-btn").style.display = "inline";
+  } else {
+    document.getElementById("submit-btn").style.display = "inline";
+    document.getElementById("update-btn").style.display = "none";
+    document.getElementById("cancel-btn").style.display = "none";
+  }
+}
+
+document.getElementById("update-btn").onclick = function () {
+  form.dispatchEvent(new Event("submit"));
+};
+
+document.getElementById("cancel-btn").onclick = function () {
+  editIndex = null;
+  form.reset();
+  toggleEditMode(false);
+};
