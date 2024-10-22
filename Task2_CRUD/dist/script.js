@@ -1,4 +1,3 @@
-/////////////////////////////////////////////////////////SELECTING THE ELEMENTS/////////////////////////////////////////////////////////////
 const form = document.getElementById("formValues");
 const firstName = document.getElementById("FirstName");
 const lastName = document.getElementById("LastName");
@@ -10,32 +9,116 @@ const dataTable = document
   .getElementById("data-table")
   .getElementsByTagName("tbody")[0];
 
+// Error elements
+const nameError = document.getElementById("nameError");
+const lastNameError = document.getElementById("lastNameError");
+const Emailerror = document.getElementById("emailError");
+const phoneerror = document.getElementById("phoneError");
+const gendererror = document.getElementById("genderError");
+const cityError = document.getElementById("cityError");
+
 let userData = [];
 let editIndex = null;
+
+// Validation Functions
+function validateName(name) {
+  const namePattern = /^[A-Za-z]+$/;
+  return namePattern.test(name);
+}
+
+function validateEmail(email) {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
+
+function validatePhoneNumber(phone) {
+  return /^\d{10}$/.test(phone);
+}
+
+function validateForm() {
+  let isValid = true;
+
+  // Clear previous errors
+  nameError.innerHTML = "";
+  lastNameError.innerHTML = "";
+  Emailerror.innerHTML = "";
+  phoneerror.innerHTML = "";
+  gendererror.innerHTML = "";
+  cityError.innerHTML = ""; // Clear city error
+
+  if (firstName.value.trim() === "") {
+    nameError.innerHTML = "First name is required";
+    isValid = false;
+  } else if (!validateName(firstName.value)) {
+    nameError.innerHTML = "First name can only contain alphabets, not numbers";
+    isValid = false;
+  }
+
+  if (lastName.value.trim() === "") {
+    lastNameError.innerHTML = "Last name is required";
+    isValid = false;
+  } else if (!validateName(lastName.value)) {
+    lastNameError.innerHTML =
+      "Last name can only contain alphabets, not numbers";
+    isValid = false;
+  }
+
+  if (email.value.trim() === "") {
+    Emailerror.innerHTML = "Email is required";
+    isValid = false;
+  } else if (!validateEmail(email.value)) {
+    Emailerror.innerHTML = "Please enter a valid email address";
+    isValid = false;
+  }
+
+  if (phoneNumber.value.trim() === "") {
+    phoneerror.innerHTML = "Phone number is required";
+    isValid = false;
+  } else if (!validatePhoneNumber(phoneNumber.value)) {
+    phoneerror.innerHTML = "Please enter a valid phone number (10 digits)";
+    isValid = false;
+  }
+
+  // Gender validation for dropdown
+  if (gender.value === "") {
+    gendererror.innerHTML = "Gender is required";
+    isValid = false;
+  }
+
+  // City validation for dropdown
+  if (city.value === "") {
+    cityError.innerHTML = "City is required";
+    isValid = false;
+  }
+
+  return isValid;
+}
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const selectedGender = gender.value;
-  const selectCity = city.value;
+  if (validateForm()) {
+    const selectedGender = gender.value;
+    const selectCity = city.value;
 
-  const userInfo = {
-    firstName: firstName.value,
-    lastName: lastName.value,
-    email: email.value,
-    phoneNumber: phoneNumber.value,
-    gender: selectedGender,
-    city: selectCity,
-  };
+    const userInfo = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      phoneNumber: phoneNumber.value,
+      gender: selectedGender,
+      city: selectCity,
+    };
 
-  if (editIndex === null) {
-    userData.push(userInfo);
-  } else {
-    userData[editIndex] = userInfo;
-    editIndex = null;
+    if (editIndex === null) {
+      userData.push(userInfo);
+    } else {
+      userData[editIndex] = userInfo;
+      editIndex = null;
+    }
+    form.reset();
+    updateTable();
   }
-  form.reset();
-  updateTable();
 });
 
 function updateTable() {
